@@ -1,6 +1,5 @@
 package com.example.reminder;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,8 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-
-import java.security.PrivateKey;
 
 public class Dialog extends AppCompatDialogFragment {
     private EditText content;
@@ -36,7 +33,7 @@ public class Dialog extends AppCompatDialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 String new_content =  content.getText().toString();
                 Boolean new_imp = imp.isChecked();
-                dialogLestener.reminderInfo(new_content,new_imp);
+                dialogLestener.addReminderInfo(new_content,new_imp);
             }
         });
         content = view.findViewById(R.id.new_rem);
@@ -52,7 +49,7 @@ public class Dialog extends AppCompatDialogFragment {
 
     public interface DialogLestener
     {
-        void reminderInfo(String content, boolean important);
+        void addReminderInfo(String content, boolean important);
 
     }
 }

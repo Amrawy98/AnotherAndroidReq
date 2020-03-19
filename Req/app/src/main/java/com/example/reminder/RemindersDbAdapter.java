@@ -76,7 +76,7 @@ public class RemindersDbAdapter {
     public Reminder fetchReminderById(int id) {
         Cursor rems= mDb.rawQuery("select * from " + TABLE_NAME + " where "+COL_ID+" = " + String.valueOf(id), null);
         rems.moveToFirst();
-        Reminder rem = new Reminder(id,rems.getString(INDEX_CONTENT),Integer.valueOf(rems.getString(INDEX_IMPORTANT)));
+        Reminder rem = new Reminder(id,rems.getString(INDEX_CONTENT),rems.getInt(INDEX_IMPORTANT));
         return rem;
     }
 

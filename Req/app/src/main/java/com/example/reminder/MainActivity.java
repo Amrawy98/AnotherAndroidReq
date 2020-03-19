@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         }
     }
     @Override
-    public void reminderInfo(String content, boolean important) {
+    public void addReminderInfo(String content, boolean important) {
         db.createReminder(content,important);
         this.cursor=db.fetchAllReminders();
         cursor.moveToFirst();
@@ -134,16 +134,18 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
            case R.id.delete:
                //TODO: DELETE LOGIC
                cursor.moveToPosition(selectedIndex);
-               Reminder reminder = db.fetchReminderById(cursor.getInt(0));
-               db.deleteReminderById(reminder.getId());
+               //Reminder reminder = db.fetchReminderById(cursor.getInt(0));
+               //db.deleteReminderById(reminder.getId());
+               db.deleteReminderById(cursor.getInt(0));
                cursor=db.fetchAllReminders();
                cursor.moveToFirst();
-               cursorAda = new RemindersSimpleCursorAdapter(MainActivity.this,
-                       R.layout.reminders_row,
-                       cursor,
-                       new String[]{RemindersDbAdapter.COL_CONTENT},
-                       new int[]{R.id.remindertodo},
-                       0);
+               cursorAda.changeCursor(cursor);
+//               cursorAda = new RemindersSimpleCursorAdapter(MainActivity.this,
+//                       R.layout.reminders_row,
+//                       cursor,
+//                       new String[]{RemindersDbAdapter.COL_CONTENT},
+//                       new int[]{R.id.remindertodo},
+//                       0);
                listView.setAdapter(cursorAda);
                Toast.makeText(this,"you want to delete",Toast.LENGTH_SHORT).show();
                return true;

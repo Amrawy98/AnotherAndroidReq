@@ -16,15 +16,6 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 public class EditDialog extends AppCompatDialogFragment {
     private EditText content;
     private CheckBox imp;
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public void setImpVal(Boolean impVal) {
-        this.impVal = impVal;
-    }
-
     private String text;
     private Boolean impVal;
     private EditDialogListener dialogLestener;
@@ -53,7 +44,13 @@ public class EditDialog extends AppCompatDialogFragment {
         imp.setChecked(impVal);
         return builder.create();
     }
+    public void setText(String text) {
+        this.text = text;
+    }
 
+    public void setImpVal(Boolean impVal) {
+        this.impVal = impVal;
+    }
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
